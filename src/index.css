@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-light dark:bg-dark text-gray-800 dark:text-gray-200;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors;
+  }
+  
+  .section-title {
+    @apply text-3xl font-bold mb-8 text-center;
+  }
+} 
