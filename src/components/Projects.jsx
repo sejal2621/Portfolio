@@ -47,7 +47,7 @@ const Projects = () => {
       description: 'A responsive weather application built with vanilla JavaScript that provides real-time weather information. Features include city search, current weather display with temperature, humidity, and wind speed, and automatic geolocation detection. Uses OpenWeatherMap API for accurate weather data and provides a clean, intuitive interface.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'OpenWeatherMap API', 'Geolocation API', 'Fetch API'],
       image: '/projects/weather-app.png',
-      github: 'https://github.com/sejal2621/weather-app',
+      github: 'https://github.com/sejal2621/Weather-App',
       live: 'https://sejal2621.github.io/weather-app/',
       featured: true,
       category: 'web',
@@ -66,7 +66,7 @@ const Projects = () => {
       description: 'A modern notes application built with React.js that allows users to create, edit, and organize their notes efficiently. Features include note categorization, search functionality, and local storage persistence. The app provides a clean, intuitive interface with real-time updates.',
       technologies: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Local Storage', 'Context API'],
       image: '/projects/notes-app.png',
-      github: 'https://github.com/sejal2621/notes-app',
+      github: 'https://github.com/sejal2621/Notes-App',
       live: 'https://sejal2621.github.io/notes-app/',
       featured: true,
       category: 'web',
@@ -85,7 +85,7 @@ const Projects = () => {
       description: 'A feature-rich music player application that allows users to play, pause, and manage their music collection. Built with JavaScript, it includes audio controls, playlist management, and a modern, responsive design. Features include audio visualization and keyboard shortcuts.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'Web Audio API', 'Local Storage'],
       image: '/projects/music-app.png',
-      github: 'https://github.com/sejal2621/music-app',
+      github: 'https://github.com/sejal2621/Music_Player',
       live: 'https://sejal2621.github.io/music-app/',
       featured: true,
       category: 'web',
@@ -100,11 +100,30 @@ const Projects = () => {
       views: '400+'
     },
     {
+      title: 'Toast Notification',
+      description: 'A customizable toast notification system built with JavaScript that provides elegant, non-intrusive notifications. Features include different notification types (success, error, warning, info), auto-dismiss, and smooth animations. Easily integrable into any web application.',
+      technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'CSS Animations'],
+      image: '/projects/toast-notification.png',
+      github: 'https://github.com/sejal2621/Toast-Notification-Bars',
+      live: 'https://sejal2621.github.io/toast-notification/',
+      featured: false,
+      category: 'web',
+      highlights: [
+        'Multiple notification types',
+        'Customizable appearance',
+        'Auto-dismiss functionality',
+        'Smooth animations',
+        'Easy integration'
+      ],
+      date: '2024',
+      views: '200+'
+    },
+    {
       title: 'Todo App',
       description: 'A feature-rich todo application that helps users manage their tasks efficiently. Built with vanilla JavaScript, it includes task creation, editing, and deletion with local storage persistence. Features a clean, intuitive interface with responsive design for easy task management.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage API', 'DOM Manipulation'],
       image: '/projects/to-do-list.png',
-      github: 'https://github.com/sejal2621/todo-app',
+      github: 'https://github.com/sejal2621/To-Do-List',
       live: 'https://sejal2621.github.io/todo-app/',
       featured: false,
       category: 'web',
@@ -123,7 +142,7 @@ const Projects = () => {
       description: 'A secure random password generator that creates strong, customizable passwords. Built with JavaScript, it allows users to specify password length and include/exclude different character types. Features include copy-to-clipboard functionality and password strength indicators.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'Clipboard API', 'DOM Manipulation'],
       image: '/projects/random-password-generator.png',
-      github: 'https://github.com/sejal2621/password-generator',
+      github: 'https://github.com/sejal2621/Random-Password-Generator',
       live: 'https://sejal2621.github.io/password-generator/',
       featured: false,
       category: 'web',
@@ -157,30 +176,11 @@ const Projects = () => {
       views: '250+'
     },
     {
-      title: 'Toast Notification',
-      description: 'A customizable toast notification system built with JavaScript that provides elegant, non-intrusive notifications. Features include different notification types (success, error, warning, info), auto-dismiss, and smooth animations. Easily integrable into any web application.',
-      technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'CSS Animations'],
-      image: '/projects/toast-notification.png',
-      github: 'https://github.com/sejal2621/toast-notification',
-      live: 'https://sejal2621.github.io/toast-notification/',
-      featured: false,
-      category: 'web',
-      highlights: [
-        'Multiple notification types',
-        'Customizable appearance',
-        'Auto-dismiss functionality',
-        'Smooth animations',
-        'Easy integration'
-      ],
-      date: '2024',
-      views: '200+'
-    },
-    {
       title: 'QR Code Generator',
       description: 'A user-friendly QR code generator that creates QR codes for URLs, text, and contact information. Built with JavaScript, it provides instant QR code generation with the ability to download the generated codes. Features include error handling and a clean, minimalist interface.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'QR Code API', 'DOM Manipulation'],
       image: '/projects/qr-code-generator.png',
-      github: 'https://github.com/sejal2621/qr-code-generator',
+      github: 'https://github.com/sejal2621/QR-Code-Generator',
       live: 'https://sejal2621.github.io/qr-code-generator/',
       featured: false,
       category: 'web',
@@ -199,7 +199,7 @@ const Projects = () => {
       description: 'A classic Tic Tac Toe game built with JavaScript, featuring a clean interface and game state management. Includes player turn indicators, win detection, and a reset option. The game is responsive and works seamlessly across all devices.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'Game Logic'],
       image: '/projects/tic-tac-toe.png',
-      github: 'https://github.com/sejal2621/tic-tac-toe',
+      github: 'https://github.com/sejal2621/TIC-TAC-TOE-Game',
       live: 'https://sejal2621.github.io/tic-tac-toe/',
       featured: false,
       category: 'web',
@@ -218,7 +218,7 @@ const Projects = () => {
       description: 'An interactive Rock Paper Scissors game with a modern UI and engaging animations. Features include score tracking, game history, and computer opponent with random choice generation. Built with vanilla JavaScript for optimal performance.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'Game Logic'],
       image: '/projects/rock-paper-scissors-game.png',
-      github: 'https://github.com/sejal2621/rock-paper-scissors',
+      github: 'https://github.com/sejal2621/Rock-Paper-Scissors-Game',
       live: 'https://sejal2621.github.io/rock-paper-scissors/',
       featured: false,
       category: 'web',
@@ -256,7 +256,7 @@ const Projects = () => {
       description: 'A fully functional calculator application with a modern, clean interface. Features include basic arithmetic operations, keyboard support, and a responsive design. Built with JavaScript for smooth calculations and user interaction.',
       technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'Event Handling'],
       image: '/projects/calculator.png',
-      github: 'https://github.com/sejal2621/calculator',
+      github: 'https://github.com/sejal2621/Calculator_JS',
       live: 'https://sejal2621.github.io/calculator/',
       featured: false,
       category: 'web',
@@ -269,6 +269,25 @@ const Projects = () => {
       ],
       date: '2023',
       views: '250+'
+    },
+    {
+      title: 'Digital Clock',
+      description: 'A real-time digital clock application with a modern, clean interface. Features include 24-hour format display, smooth animations, and responsive design. Built with vanilla JavaScript for optimal performance and minimal dependencies.',
+      technologies: ['JavaScript', 'HTML5', 'CSS3', 'DOM Manipulation', 'Date API'],
+      image: '/projects/digital-clock.png',
+      github: 'https://github.com/sejal2621/Digital-Clock',
+      live: 'https://sejal2621.github.io/Digital-Clock/',
+      featured: false,
+      category: 'web',
+      highlights: [
+        'Real-time clock updates',
+        '24-hour format display',
+        'Two-digit time format',
+        'Clean, modern interface',
+        'Responsive design'
+      ],
+      date: '2023',
+      views: '120+'
     }
   ]
 
@@ -564,22 +583,21 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
-                        title="View Code"
+                        className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-1"
+                        title="View on GitHub"
                       >
-                        <CodeBracketIcon className="h-5 w-5" />
-                      </a>
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
-                          title="Live Demo"
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          width="20" 
+                          height="20" 
+                          viewBox="0 0 24 24" 
+                          fill="currentColor"
+                          className="hover:scale-110 transition-transform"
                         >
-                          <ArrowTopRightOnSquareIcon className="h-5 w-5" />
-                        </a>
-                      )}
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span className="text-sm">View Code</span>
+                      </a>
                     </div>
                   </motion.div>
                 </div>
