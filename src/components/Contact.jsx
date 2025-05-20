@@ -43,7 +43,7 @@ const Contact = () => {
       icon: <DocumentIcon className="h-6 w-6" />,
       title: 'Resume',
       content: 'Download Resume',
-      href: 'https://drive.google.com/uc?export=download&id=1TOrGwuJPO7QQtarGSLyI7gQxDmtT2j76'
+      href: 'https://drive.google.com/uc?export=download&id=1n-a-PFi7Y5kc_tSScjGYzAA1gu6O47AB'
     }
   ]
 

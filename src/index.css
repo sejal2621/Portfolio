@@ -8,13 +8,13 @@
   }
   
   body {
-    @apply bg-light dark:bg-dark text-gray-800 dark:text-gray-200;
+    @apply bg-light dark:bg-dark text-gray-800 dark:text-gray-200 py-4 px-4 sm:px-6 lg:px-8;
   }
 }
 
 @layer components {
   .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
   }
   
   .btn-primary {
