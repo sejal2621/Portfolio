@@ -3,18 +3,39 @@
 @tailwind utilities;
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   body {
-    @apply bg-light dark:bg-dark text-gray-800 dark:text-gray-200 py-4 px-4 sm:px-6 lg:px-8;
+    @apply bg-light dark:bg-dark text-gray-800 dark:text-gray-200;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Ensure images and other media don't overflow */
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
   }
 }
 
 @layer components {
   .container {
-    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
   }
   
   .btn-primary {
@@ -24,4 +45,11 @@
   .section-title {
     @apply text-3xl font-bold mb-8 text-center;
   }
+}
+
+/* Fix for any potential overflow issues in sections */
+section {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 } 
