@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { 
   CodeBracketIcon, 
   ArrowTopRightOnSquareIcon, 
@@ -21,6 +21,8 @@ const Projects = () => {
   const [sortBy, setSortBy] = useState('date')
   const [sortOrder, setSortOrder] = useState('desc')
   const [visibleProjects, setVisibleProjects] = useState(6)
+  const [projectViews, setProjectViews] = useState({})
+  const [isLoadingViews, setIsLoadingViews] = useState({})
 
   const projects = [
     {
@@ -429,6 +431,44 @@ const Projects = () => {
     }
   }
 
+  // Initialize views from localStorage or start with 0
+  useEffect(() => {
+    const storedViews = localStorage.getItem('projectViews');
+    if (storedViews) {
+      setProjectViews(JSON.parse(storedViews));
+    } else {
+      // Initialize all projects with 0 views
+      const initialViews = {};
+      projects.forEach(project => {
+        const repoName = project.github.split('/').pop();
+        initialViews[repoName] = 0;
+      });
+      setProjectViews(initialViews);
+      localStorage.setItem('projectViews', JSON.stringify(initialViews));
+    }
+  }, []);
+
+  // Function to increment view count
+  const incrementViewCount = (repoName) => {
+    setProjectViews(prev => {
+      const newViews = {
+        ...prev,
+        [repoName]: (prev[repoName] || 0) + 1
+      };
+      localStorage.setItem('projectViews', JSON.stringify(newViews));
+      return newViews;
+    });
+  };
+
+  // Function to format view count
+  const formatViewCount = (count) => {
+    if (!count) return '0';
+    if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)}k+`;
+    }
+    return `${count}+`;
+  };
+
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -573,9 +613,16 @@ const Projects = () => {
                         <CalendarIcon className="h-4 w-4" />
                         {project.date}
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span 
+                        className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors"
+                        onClick={() => {
+                          const repoName = project.github.split('/').pop();
+                          incrementViewCount(repoName);
+                        }}
+                        title="Click to increment view count"
+                      >
                         <EyeIcon className="h-4 w-4" />
-                        {project.views}
+                        {formatViewCount(projectViews[project.github.split('/').pop()] || 0)}
                       </span>
                     </div>
                     <div className="flex gap-2">

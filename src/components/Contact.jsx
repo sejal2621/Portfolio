@@ -1,7 +1,25 @@
 import { motion } from 'framer-motion'
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, DocumentIcon } from '@heroicons/react/24/outline'
+import { useState, useEffect } from 'react'
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' })
+
+  // Add useEffect to clear success message after 5 seconds
+  useEffect(() => {
+    let timeoutId;
+    if (submitStatus.type === 'success') {
+      timeoutId = setTimeout(() => {
+        setSubmitStatus({ type: '', message: '' });
+      }, 5000); // 5 seconds
+    }
+    // Cleanup timeout on component unmount or when status changes
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [submitStatus.type]);
+
   const contactInfo = [
     {
       icon: <EnvelopeIcon className="h-6 w-6" />,
@@ -25,17 +43,24 @@ const Contact = () => {
       icon: <DocumentIcon className="h-6 w-6" />,
       title: 'Resume',
       content: 'Download Resume',
-      href: 'https://drive.google.com/uc?export=download&id=1cDpUHZor3pzvcLCLDs74R_qXrtpZSLEi'
+      href: 'https://drive.google.com/uc?export=download&id=1TOrGwuJPO7QQtarGSLyI7gQxDmtT2j76'
     }
   ]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus({ type: '', message: '' })
+
     const form = e.target
     const formData = new FormData(form)
     
+    // Add timestamp and user agent info
+    formData.append('_timestamp', new Date().toISOString())
+    formData.append('_userAgent', navigator.userAgent)
+    
     try {
-      const response = await fetch('https://formspree.io/f/sejalbajaj003', {
+      const response = await fetch('https://formspree.io/f/mvgadgzw', {
         method: 'POST',
         body: formData,
         headers: {
@@ -43,15 +68,25 @@ const Contact = () => {
         }
       })
       
+      const data = await response.json()
+      
       if (response.ok) {
-        alert('Message sent successfully!')
+        setSubmitStatus({
+          type: 'success',
+          message: 'Message sent successfully! I will get back to you soon.'
+        })
         form.reset()
       } else {
-        throw new Error('Failed to send message')
+        throw new Error(data.error || 'Failed to send message. Please try again.')
       }
     } catch (error) {
-      alert('Failed to send message. Please try again later.')
-      console.error('Error:', error)
+      console.error('Form submission error:', error)
+      setSubmitStatus({
+        type: 'error',
+        message: error.message || 'Failed to send message. Please try again later or email me directly at sejalbajaj003@gmail.com'
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -140,6 +175,21 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+              {submitStatus.message && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className={`p-4 rounded-lg ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-50 text-green-700 dark:bg-green-900/50 dark:text-green-300' 
+                      : 'bg-red-50 text-red-700 dark:bg-red-900/50 dark:text-red-300'
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Name
@@ -149,7 +199,12 @@ const Contact = () => {
                   id="name"
                   name="name"
                   required
+                  minLength={2}
+                  maxLength={50}
+                  pattern="[A-Za-z\s]+"
+                  title="Please enter a valid name (letters and spaces only)"
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
+                  placeholder="Your name"
                 />
               </div>
 
@@ -162,7 +217,26 @@ const Contact = () => {
                   id="email"
                   name="email"
                   required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  title="Please enter a valid email address"
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  minLength={5}
+                  maxLength={100}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
+                  placeholder="What is this regarding?"
                 />
               </div>
 
@@ -175,16 +249,32 @@ const Contact = () => {
                   name="message"
                   rows={4}
                   required
+                  minLength={10}
+                  maxLength={1000}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
+                  placeholder="Your message here..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full btn-primary hover:bg-primary/90 transition-colors"
+                disabled={isSubmitting}
+                className={`w-full btn-primary hover:bg-primary/90 transition-colors ${
+                  isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+
+              <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                I typically respond within 24 hours. For urgent matters, please email me directly at{' '}
+                <a 
+                  href="mailto:sejalbajaj003@gmail.com" 
+                  className="text-primary hover:underline"
+                >
+                  sejalbajaj003@gmail.com
+                </a>
+              </p>
             </form>
           </motion.div>
         </div>

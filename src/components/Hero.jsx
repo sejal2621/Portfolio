@@ -3,7 +3,7 @@ import { EnvelopeIcon, PhoneIcon, MapPinIcon, ArrowDownTrayIcon } from '@heroico
 
 const Hero = () => {
   // Add your resume URL here
-  const resumeUrl = 'https://drive.google.com/uc?export=download&id=1cDpUHZor3pzvcLCLDs74R_qXrtpZSLEi'
+  const resumeUrl = 'https://drive.google.com/uc?export=download&id=1TOrGwuJPO7QQtarGSLyI7gQxDmtT2j76'
   
   const contactInfo = [
     {
