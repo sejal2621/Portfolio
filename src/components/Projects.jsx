@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { 
   CodeBracketIcon, 
   ArrowTopRightOnSquareIcon, 
@@ -21,8 +21,6 @@ const Projects = () => {
   const [sortBy, setSortBy] = useState('date')
   const [sortOrder, setSortOrder] = useState('desc')
   const [visibleProjects, setVisibleProjects] = useState(6)
-  const [projectViews, setProjectViews] = useState({})
-  const [isLoadingViews, setIsLoadingViews] = useState({})
 
   const projects = [
     {
@@ -41,8 +39,7 @@ const Projects = () => {
         'Contact form with Formspree integration',
         'Project showcase with filtering and search'
       ],
-      date: '2024',
-      views: '500+'
+      date: '2024'
     },
     {
       title: 'Weather App',
@@ -60,8 +57,7 @@ const Projects = () => {
         'Geolocation support for local weather',
         'Responsive design with modern UI'
       ],
-      date: '2023',
-      views: '1.2k+'
+      date: '2023'
     },
     {
       title: 'Notes App',
@@ -79,8 +75,7 @@ const Projects = () => {
         'Local storage persistence',
         'Responsive and modern UI'
       ],
-      date: '2024',
-      views: '300+'
+      date: '2024'
     },
     {
       title: 'Music App',
@@ -98,8 +93,7 @@ const Projects = () => {
         'Keyboard shortcuts',
         'Responsive design'
       ],
-      date: '2024',
-      views: '400+'
+      date: '2024'
     },
     {
       title: 'Toast Notification',
@@ -117,8 +111,7 @@ const Projects = () => {
         'Smooth animations',
         'Easy integration'
       ],
-      date: '2024',
-      views: '200+'
+      date: '2024'
     },
     {
       title: 'Todo App',
@@ -136,8 +129,7 @@ const Projects = () => {
         'Responsive and intuitive UI',
         'Clean and modern design'
       ],
-      date: '2023',
-      views: '800+'
+      date: '2023'
     },
     {
       title: 'Password Generator',
@@ -155,8 +147,7 @@ const Projects = () => {
         'Password strength indicator',
         'Clean and intuitive interface'
       ],
-      date: '2023',
-      views: '500+'
+      date: '2023'
     },
     {
       title: 'Age Calculator',
@@ -174,8 +165,7 @@ const Projects = () => {
         'Real-time updates',
         'Clean and intuitive interface'
       ],
-      date: '2024',
-      views: '250+'
+      date: '2024'
     },
     {
       title: 'QR Code Generator',
@@ -193,8 +183,7 @@ const Projects = () => {
         'Error handling and validation',
         'Clean, minimalist interface'
       ],
-      date: '2023',
-      views: '300+'
+      date: '2023'
     },
     {
       title: 'Tic Tac Toe Game',
@@ -212,8 +201,7 @@ const Projects = () => {
         'Game reset functionality',
         'Responsive design'
       ],
-      date: '2023',
-      views: '200+'
+      date: '2023'
     },
     {
       title: 'Rock Paper Scissors Game',
@@ -231,8 +219,7 @@ const Projects = () => {
         'Computer opponent',
         'Responsive design'
       ],
-      date: '2023',
-      views: '150+'
+      date: '2023'
     },
     {
       title: 'Quiz App',
@@ -250,8 +237,7 @@ const Projects = () => {
         'Immediate feedback',
         'Responsive design'
       ],
-      date: '2023',
-      views: '180+'
+      date: '2023'
     },
     {
       title: 'Calculator',
@@ -269,8 +255,7 @@ const Projects = () => {
         'Error handling',
         'Responsive design'
       ],
-      date: '2023',
-      views: '250+'
+      date: '2023'
     },
     {
       title: 'Digital Clock',
@@ -288,8 +273,7 @@ const Projects = () => {
         'Clean, modern interface',
         'Responsive design'
       ],
-      date: '2023',
-      views: '120+'
+      date: '2023'
     }
   ]
 
@@ -301,7 +285,6 @@ const Projects = () => {
 
   const sortOptions = [
     { id: 'date', label: 'Date' },
-    { id: 'views', label: 'Views' },
     { id: 'title', label: 'Title' }
   ]
 
@@ -335,9 +318,6 @@ const Projects = () => {
       switch (sortBy) {
         case 'date':
           comparison = a.date.localeCompare(b.date)
-          break
-        case 'views':
-          comparison = parseInt(a.views) - parseInt(b.views)
           break
         case 'title':
           comparison = a.title.localeCompare(b.title)
@@ -430,44 +410,6 @@ const Projects = () => {
       }
     }
   }
-
-  // Initialize views from localStorage or start with 0
-  useEffect(() => {
-    const storedViews = localStorage.getItem('projectViews');
-    if (storedViews) {
-      setProjectViews(JSON.parse(storedViews));
-    } else {
-      // Initialize all projects with 0 views
-      const initialViews = {};
-      projects.forEach(project => {
-        const repoName = project.github.split('/').pop();
-        initialViews[repoName] = 0;
-      });
-      setProjectViews(initialViews);
-      localStorage.setItem('projectViews', JSON.stringify(initialViews));
-    }
-  }, []);
-
-  // Function to increment view count
-  const incrementViewCount = (repoName) => {
-    setProjectViews(prev => {
-      const newViews = {
-        ...prev,
-        [repoName]: (prev[repoName] || 0) + 1
-      };
-      localStorage.setItem('projectViews', JSON.stringify(newViews));
-      return newViews;
-    });
-  };
-
-  // Function to format view count
-  const formatViewCount = (count) => {
-    if (!count) return '0';
-    if (count >= 1000) {
-      return `${(count / 1000).toFixed(1)}k+`;
-    }
-    return `${count}+`;
-  };
 
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
@@ -612,17 +554,6 @@ const Projects = () => {
                       <span className="flex items-center gap-1">
                         <CalendarIcon className="h-4 w-4" />
                         {project.date}
-                      </span>
-                      <span 
-                        className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors"
-                        onClick={() => {
-                          const repoName = project.github.split('/').pop();
-                          incrementViewCount(repoName);
-                        }}
-                        title="Click to increment view count"
-                      >
-                        <EyeIcon className="h-4 w-4" />
-                        {formatViewCount(projectViews[project.github.split('/').pop()] || 0)}
                       </span>
                     </div>
                     <div className="flex gap-2">

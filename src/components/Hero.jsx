@@ -12,11 +12,6 @@ const Hero = () => {
       href: 'mailto:sejalbajaj003@gmail.com'
     },
     {
-      icon: <PhoneIcon className="h-5 w-5" />,
-      text: '+92 324 3515772',
-      href: 'tel:+923243515772'
-    },
-    {
       icon: <MapPinIcon className="h-5 w-5" />,
       text: 'Karachi, Sindh',
       href: 'https://maps.google.com/?q=Karachi+Sindh'

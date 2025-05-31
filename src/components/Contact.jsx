@@ -28,12 +28,6 @@ const Contact = () => {
       href: 'mailto:sejalbajaj003@gmail.com'
     },
     {
-      icon: <PhoneIcon className="h-6 w-6" />,
-      title: 'Phone',
-      content: '+92 324 3515772',
-      href: 'tel:+923243515772'
-    },
-    {
       icon: <MapPinIcon className="h-6 w-6" />,
       title: 'Location',
       content: 'Karachi, Sindh',
